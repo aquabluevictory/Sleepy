@@ -1,0 +1,2005 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="ProFlow">
+  <meta name="theme-color" content="#312e81">
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiUHJvRmxvdyIsInNob3J0X25hbWUiOiJQcm9GbG93Iiwic3RhcnRfdXJsIjoiLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiMzMTJlODEiLCJ0aGVtZV9jb2xvciI6IiMzMTJlODEiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sLCUzQ3N2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJyUzRSUzQ3JlY3Qgd2lkdGg9JzEwMCcgaGVpZ2h0PScxMDAnIGZpbGw9JyUyMzMxMmU4MScvJTNFJTNDdGV4dCB4PSc1MCcgeT0nNTUnIGZvbnQtc2l6ZT0nNDgnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZpbGw9J3doaXRlJyUzRVAlM0MvdGV4dCUzRSUzQy9zdmclM0UiLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2Uvc3ZnK3htbCJ9XX0=">
+  <title>ProFlow - Executive Productivity System</title>
+  
+  <style>
+    /* Reset and Base Styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      color: #1f2937;
+    }
+
+    /* Tailwind-like Utility Classes */
+    .container { max-width: 1280px; margin: 0 auto; }
+    .max-w-7xl { max-width: 80rem; }
+    .max-w-4xl { max-width: 56rem; }
+    .max-w-2xl { max-width: 42rem; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    
+    /* Padding */
+    .p-1 { padding: 0.25rem; }
+    .p-2 { padding: 0.5rem; }
+    .p-3 { padding: 0.75rem; }
+    .p-4 { padding: 1rem; }
+    .p-5 { padding: 1.25rem; }
+    .p-6 { padding: 1.5rem; }
+    .p-7 { padding: 1.75rem; }
+    .p-8 { padding: 2rem; }
+    .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+    .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .px-5 { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .px-8 { padding-left: 2rem; padding-right: 2rem; }
+    .px-12 { padding-left: 3rem; padding-right: 3rem; }
+    .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+    .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+    .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+    .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+    .pt-32 { padding-top: 8rem; }
+    .pb-20 { padding-bottom: 5rem; }
+    .mt-1 { margin-top: 0.25rem; }
+    .mt-2 { margin-top: 0.5rem; }
+    .mt-3 { margin-top: 0.75rem; }
+    .mt-4 { margin-top: 1rem; }
+    .mt-6 { margin-top: 1.5rem; }
+    .mb-1 { margin-bottom: 0.25rem; }
+    .mb-2 { margin-bottom: 0.5rem; }
+    .mb-3 { margin-bottom: 0.75rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .mb-8 { margin-bottom: 2rem; }
+    .mb-10 { margin-bottom: 2.5rem; }
+    .mb-12 { margin-bottom: 3rem; }
+    
+    /* Margin */
+    .m-0 { margin: 0; }
+    .mx-6 { margin-left: 1.5rem; margin-right: 1.5rem; }
+    .ml-4 { margin-left: 1rem; }
+    
+    /* Flexbox */
+    .flex { display: flex; }
+    .flex-1 { flex: 1 1 0%; }
+    .flex-col { flex-direction: column; }
+    .flex-wrap { flex-wrap: wrap; }
+    .flex-shrink-0 { flex-shrink: 0; }
+    .items-start { align-items: flex-start; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .justify-center { justify-content: center; }
+    .gap-1 { gap: 0.25rem; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-3 { gap: 0.75rem; }
+    .gap-4 { gap: 1rem; }
+    .gap-6 { gap: 1.5rem; }
+    .gap-8 { gap: 2rem; }
+    .gap-12 { gap: 3rem; }
+    
+    /* Grid */
+    .grid { display: grid; }
+    .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    
+    /* Text */
+    .text-xs { font-size: 0.75rem; line-height: 1rem; }
+    .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+    .text-base { font-size: 1rem; line-height: 1.5rem; }
+    .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+    .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+    .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+    .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+    .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+    .text-5xl { font-size: 3rem; line-height: 1; }
+    .text-6xl { font-size: 3.75rem; line-height: 1; }
+    .text-7xl { font-size: 4.5rem; line-height: 1; }
+    .font-light { font-weight: 300; }
+    .font-medium { font-weight: 500; }
+    .font-semibold { font-weight: 600; }
+    .font-bold { font-weight: 700; }
+    .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+    .tracking-wider { letter-spacing: 0.05em; }
+    .leading-relaxed { line-height: 1.625; }
+    .leading-normal { line-height: 1.5; }
+    .line-through { text-decoration: line-through; }
+    .whitespace-nowrap { white-space: nowrap; }
+    
+    /* Colors */
+    .text-white { color: #ffffff; }
+    .text-gray-400 { color: #9ca3af; }
+    .text-gray-500 { color: #6b7280; }
+    .text-gray-600 { color: #4b5563; }
+    .text-gray-700 { color: #374151; }
+    .text-gray-800 { color: #1f2937; }
+    .text-gray-900 { color: #111827; }
+    .text-indigo-100 { color: #e0e7ff; }
+    .text-indigo-200 { color: #c7d2fe; }
+    .text-indigo-600 { color: #4f46e5; }
+    .text-indigo-700 { color: #4338ca; }
+    .text-indigo-900 { color: #312e81; }
+    .text-red-600 { color: #dc2626; }
+    .text-red-700 { color: #b91c1c; }
+    .text-green-600 { color: #16a34a; }
+    .text-green-700 { color: #15803d; }
+    .text-amber-600 { color: #d97706; }
+    .text-amber-700 { color: #b45309; }
+    .text-amber-900 { color: #78350f; }
+    .text-blue-600 { color: #2563eb; }
+    .text-purple-600 { color: #9333ea; }
+    
+    .bg-white { background-color: #ffffff; }
+    .bg-gray-50 { background-color: #f9fafb; }
+    .bg-gray-100 { background-color: #f3f4f6; }
+    .bg-gray-200 { background-color: #e5e7eb; }
+    .bg-gray-600 { background-color: #4b5563; }
+    .bg-gray-700 { background-color: #374151; }
+    .bg-gray-800 { background-color: #1f2937; }
+    .bg-indigo-50 { background-color: #eef2ff; }
+    .bg-indigo-100 { background-color: #e0e7ff; }
+    .bg-indigo-600 { background-color: #4f46e5; }
+    .bg-indigo-700 { background-color: #4338ca; }
+    .bg-indigo-800 { background-color: #3730a3; }
+    .bg-indigo-900 { background-color: #312e81; }
+    .bg-red-50 { background-color: #fef2f2; }
+    .bg-red-100 { background-color: #fee2e2; }
+    .bg-red-600 { background-color: #dc2626; }
+    .bg-red-700 { background-color: #b91c1c; }
+    .bg-green-50 { background-color: #f0fdf4; }
+    .bg-green-100 { background-color: #dcfce7; }
+    .bg-green-500 { background-color: #22c55e; }
+    .bg-green-600 { background-color: #16a34a; }
+    .bg-green-700 { background-color: #15803d; }
+    .bg-amber-50 { background-color: #fffbeb; }
+    .bg-amber-100 { background-color: #fef3c7; }
+    .bg-amber-500 { background-color: #f59e0b; }
+    .bg-blue-50 { background-color: #eff6ff; }
+    .bg-blue-100 { background-color: #dbeafe; }
+    .bg-blue-500 { background-color: #3b82f6; }
+    .bg-blue-600 { background-color: #2563eb; }
+    .bg-blue-700 { background-color: #1d4ed8; }
+    .bg-purple-50 { background-color: #faf5ff; }
+    .bg-purple-600 { background-color: #9333ea; }
+    .bg-purple-700 { background-color: #7e22ce; }
+    .bg-purple-900 { background-color: #581c87; }
+    .bg-orange-50 { background-color: #fff7ed; }
+    
+    /* Opacity */
+    .opacity-0 { opacity: 0; }
+    .opacity-50 { opacity: 0.5; }
+    .opacity-90 { opacity: 0.9; }
+    .opacity-95 { opacity: 0.95; }
+    .opacity-100 { opacity: 1; }
+    
+    /* Border */
+    .border { border-width: 1px; }
+    .border-2 { border-width: 2px; }
+    .border-4 { border-width: 4px; }
+    .border-l-4 { border-left-width: 4px; }
+    .border-gray-200 { border-color: #e5e7eb; }
+    .border-gray-300 { border-color: #d1d5db; }
+    .border-indigo-300 { border-color: #a5b4fc; }
+    .border-indigo-900 { border-color: #312e81; }
+    .border-green-200 { border-color: #bbf7d0; }
+    .border-white { border-color: #ffffff; }
+    .border-none { border-style: none; }
+    .border-dashed { border-style: dashed; }
+    .rounded { border-radius: 0.25rem; }
+    .rounded-lg { border-radius: 0.5rem; }
+    .rounded-xl { border-radius: 0.75rem; }
+    .rounded-2xl { border-radius: 1rem; }
+    .rounded-3xl { border-radius: 1.5rem; }
+    .rounded-full { border-radius: 9999px; }
+    .rounded-t-3xl { border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem; }
+    
+    /* Shadow */
+    .shadow-lg { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+    .shadow-2xl { box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); }
+    
+    /* Width/Height */
+    .w-6 { width: 1.5rem; }
+    .w-8 { width: 2rem; }
+    .w-32 { width: 8rem; }
+    .w-full { width: 100%; }
+    .h-2 { height: 0.5rem; }
+    .h-3 { height: 0.75rem; }
+    .h-6 { height: 1.5rem; }
+    .h-8 { height: 2rem; }
+    .min-w-0 { min-width: 0; }
+    .min-h-screen { min-height: 100vh; }
+    .max-w-90 { max-width: 90%; }
+    .max-h-90vh { max-height: 90vh; }
+    
+    /* Position */
+    .fixed { position: fixed; }
+    .sticky { position: sticky; }
+    .relative { position: relative; }
+    .absolute { position: absolute; }
+    .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+    .top-0 { top: 0; }
+    .left-0 { left: 0; }
+    .right-0 { right: 0; }
+    .bottom-20 { bottom: 5rem; }
+    .left-50 { left: 50%; }
+    .top-100 { top: 100px; }
+    .right-20 { right: 20px; }
+    
+    /* Display */
+    .hidden { display: none; }
+    .block { display: block; }
+    .inline { display: inline; }
+    
+    /* Cursor */
+    .cursor-pointer { cursor: pointer; }
+    .cursor-text { cursor: text; }
+    
+    /* Outline */
+    .outline-none { outline: 2px solid transparent; outline-offset: 2px; }
+    
+    /* Z-index */
+    .z-50 { z-index: 50; }
+    .z-1000 { z-index: 1000; }
+    
+    /* Overflow */
+    .overflow-hidden { overflow: hidden; }
+    .overflow-y-auto { overflow-y: auto; }
+    
+    /* Resize */
+    .resize-none { resize: none; }
+    
+    /* Transition */
+    .transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+    .transition-opacity { transition-property: opacity; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+    .transition-colors { transition-property: color, background-color, border-color; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+    .duration-300 { transition-duration: 300ms; }
+    .duration-500 { transition-duration: 500ms; }
+    
+    /* Hover states */
+    .hover\:bg-white\/20:hover { background-color: rgba(255, 255, 255, 0.2); }
+    .hover\:bg-white\/30:hover { background-color: rgba(255, 255, 255, 0.3); }
+    .hover\:bg-white\/80:hover { background-color: rgba(255, 255, 255, 0.8); }
+    .hover\:bg-white\/85:hover { background-color: rgba(255, 255, 255, 0.85); }
+    .hover\:bg-gray-200:hover { background-color: #e5e7eb; }
+    .hover\:bg-indigo-50:hover { background-color: #eef2ff; }
+    .hover\:bg-indigo-200\/80:hover { background-color: rgba(199, 210, 254, 0.8); }
+    .hover\:bg-indigo-50\/30:hover { background-color: rgba(238, 242, 255, 0.3); }
+    .hover\:bg-indigo-200:hover { background-color: #c7d2fe; }
+    .hover\:bg-indigo-700:hover { background-color: #4338ca; }
+    .hover\:bg-indigo-800:hover { background-color: #3730a3; }
+    .hover\:bg-blue-700:hover { background-color: #1d4ed8; }
+    .hover\:bg-purple-700:hover { background-color: #7e22ce; }
+    .hover\:bg-gray-700:hover { background-color: #374151; }
+    .hover\:bg-red-200:hover { background-color: #fecaca; }
+    .hover\:border-indigo-900:hover { border-color: #312e81; }
+    .hover\:shadow-lg:hover { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+    .hover\:shadow-md:hover { box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+    .hover\:-translate-y-1:hover { transform: translateY(-0.25rem); }
+    .hover\:-translate-y-0\.5:hover { transform: translateY(-0.125rem); }
+    .hover\:scale-105:hover { transform: scale(1.05); }
+    .hover\:scale-110:hover { transform: scale(1.1); }
+    
+    /* Focus states */
+    .focus\:border-indigo-900:focus { border-color: #312e81; }
+    .focus\:ring-2:focus { box-shadow: 0 0 0 2px; }
+    .focus\:ring-indigo-100:focus { box-shadow: 0 0 0 2px #e0e7ff; }
+    
+    /* Backgrounds with opacity */
+    .bg-white\/60 { background-color: rgba(255, 255, 255, 0.6); }
+    .bg-white\/85 { background-color: rgba(255, 255, 255, 0.85); }
+    .bg-white\/10 { background-color: rgba(255, 255, 255, 0.1); }
+    .bg-white\/20 { background-color: rgba(255, 255, 255, 0.2); }
+    .bg-indigo-50\/50 { background-color: rgba(238, 242, 255, 0.5); }
+    .bg-indigo-100\/80 { background-color: rgba(224, 231, 255, 0.8); }
+    
+    /* Border with opacity */
+    .border-white\/50 { border-color: rgba(255, 255, 255, 0.5); }
+    .border-white\/20 { border-color: rgba(255, 255, 255, 0.2); }
+    .border-gray-200\/50 { border-color: rgba(229, 231, 235, 0.5); }
+    
+    /* Backdrop */
+    .backdrop-blur-xl { backdrop-filter: blur(24px); }
+    
+    /* Gradients */
+    .bg-gradient-to-br { background-image: linear-gradient(to bottom right, var(--tw-gradient-stops)); }
+    .bg-gradient-to-r { background-image: linear-gradient(to right, var(--tw-gradient-stops)); }
+    .from-slate-50 { --tw-gradient-from: #f8fafc; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(248, 250, 252, 0)); }
+    .via-indigo-50\/30 { --tw-gradient-stops: var(--tw-gradient-from), rgba(238, 242, 255, 0.3), var(--tw-gradient-to, rgba(238, 242, 255, 0)); }
+    .to-slate-100 { --tw-gradient-to: #f1f5f9; }
+    .from-indigo-900 { --tw-gradient-from: #312e81; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(49, 46, 129, 0)); }
+    .to-indigo-700 { --tw-gradient-to: #4338ca; }
+    .from-indigo-50 { --tw-gradient-from: #eef2ff; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(238, 242, 255, 0)); }
+    .to-purple-50 { --tw-gradient-to: #faf5ff; }
+    .from-blue-50 { --tw-gradient-from: #eff6ff; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(239, 246, 255, 0)); }
+    .to-blue-100 { --tw-gradient-to: #dbeafe; }
+    .from-green-50 { --tw-gradient-from: #f0fdf4; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(240, 253, 244, 0)); }
+    .to-green-100 { --tw-gradient-to: #dcfce7; }
+    .from-red-50 { --tw-gradient-from: #fef2f2; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(254, 242, 242, 0)); }
+    .to-red-100 { --tw-gradient-to: #fee2e2; }
+    .from-amber-50 { --tw-gradient-from: #fffbeb; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 251, 235, 0)); }
+    .to-amber-100 { --tw-gradient-to: #fef3c7; }
+    .from-purple-900 { --tw-gradient-from: #581c87; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(88, 28, 135, 0)); }
+    .to-purple-700 { --tw-gradient-to: #7e22ce; }
+    .from-gray-800 { --tw-gradient-from: #1f2937; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(31, 41, 55, 0)); }
+    .to-gray-700 { --tw-gradient-to: #374151; }
+    .from-amber-50 { --tw-gradient-from: #fffbeb; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 251, 235, 0)); }
+    .to-orange-50 { --tw-gradient-to: #fff7ed; }
+    .from-blue-500 { --tw-gradient-from: #3b82f6; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(59, 130, 246, 0)); }
+    .to-blue-700 { --tw-gradient-to: #1d4ed8; }
+    .from-green-500 { --tw-gradient-from: #22c55e; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(34, 197, 94, 0)); }
+    .to-green-700 { --tw-gradient-to: #15803d; }
+    .from-purple-500 { --tw-gradient-from: #a855f7; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(168, 85, 247, 0)); }
+    .to-purple-700 { --tw-gradient-to: #7e22ce; }
+    .from-indigo-500 { --tw-gradient-from: #6366f1; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(99, 102, 241, 0)); }
+    .from-amber-500 { --tw-gradient-from: #f59e0b; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(245, 158, 11, 0)); }
+    .to-amber-700 { --tw-gradient-to: #b45309; }
+    .from-pink-500 { --tw-gradient-from: #ec4899; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(236, 72, 153, 0)); }
+    .to-pink-700 { --tw-gradient-to: #be185d; }
+    .from-red-500 { --tw-gradient-from: #ef4444; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(239, 68, 68, 0)); }
+    .to-red-700 { --tw-gradient-to: #b91c1c; }
+    
+    .bg-clip-text { -webkit-background-clip: text; background-clip: text; }
+    .text-transparent { color: transparent; }
+    
+    /* Space */
+    .space-y-1 > * + * { margin-top: 0.25rem; }
+    .space-y-2 > * + * { margin-top: 0.5rem; }
+    .space-y-3 > * + * { margin-top: 0.75rem; }
+    .space-y-4 > * + * { margin-top: 1rem; }
+    .space-y-6 > * + * { margin-top: 1.5rem; }
+    
+    /* Responsive */
+    @media (min-width: 640px) {
+      .sm\:text-base { font-size: 1rem; line-height: 1.5rem; }
+      .sm\:text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+      .sm\:text-6xl { font-size: 3.75rem; line-height: 1; }
+      .sm\:px-12 { padding-left: 3rem; padding-right: 3rem; }
+      .sm\:p-7 { padding: 1.75rem; }
+      .sm\:px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+      .sm\:gap-4 { gap: 1rem; }
+      .sm\:gap-5 { gap: 1.25rem; }
+      .sm\:flex-row { flex-direction: row; }
+      .sm\:items-center { align-items: center; }
+      .sm\:inline { display: inline; }
+    }
+    
+    @media (min-width: 768px) {
+      .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .md\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+    
+    @media (min-width: 1024px) {
+      .lg\:text-7xl { font-size: 4.5rem; line-height: 1; }
+    }
+  </style>
+  
+  <style>
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    body {
+      overscroll-behavior: none;
+      touch-action: pan-y;
+      margin: 0;
+      padding: 0;
+    }
+    
+    @media (display-mode: standalone) {
+      body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+    }
+    
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    
+    .install-prompt {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #312e81 0%, #4f46e5 100%);
+      color: white;
+      padding: 16px 24px;
+      border-radius: 16px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      gap: 16px;
+      animation: slideUp 0.3s ease-out;
+      max-width: 90%;
+    }
+    
+    @keyframes slideUp {
+      from {
+        transform: translateX(-50%) translateY(100px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    .install-prompt button {
+      background: white;
+      color: #312e81;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .install-prompt button:hover {
+      transform: scale(1.05);
+    }
+    
+    .install-prompt .close-btn {
+      background: transparent;
+      color: white;
+      padding: 8px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    .modal-backdrop {
+      backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .spinner {
+      animation: spin 1s linear infinite;
+    }
+
+    .notification {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      z-index: 1000;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideOut {
+      from {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+    }
+
+    .slide-out {
+      animation: slideOut 0.3s ease-out forwards;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  
+  <div id="installPrompt" class="install-prompt">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+      <polyline points="7 10 12 15 17 10"/>
+      <line x1="12" y1="15" x2="12" y2="3"/>
+    </svg>
+    <div>
+      <div style="font-weight: 600;">홈 화면에 추가</div>
+      <div style="font-size: 0.875rem; opacity: 0.9;">ProFlow를 앱으로 설치하세요</div>
+    </div>
+    <button onclick="handleInstallClick()">설치</button>
+    <button onclick="dismissInstall()" class="close-btn">✕</button>
+  </div>
+
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  
+  <script type="text/babel">
+    const { useState, useEffect, useCallback, useMemo, createElement: h } = React;
+
+    // Utility Functions
+    const storage = {
+      save: (key, data) => {
+        try {
+          localStorage.setItem(key, JSON.stringify(data));
+          return true;
+        } catch (e) {
+          console.error('Storage error:', e);
+          return false;
+        }
+      },
+      load: (key, defaultValue = null) => {
+        try {
+          const item = localStorage.getItem(key);
+          return item ? JSON.parse(item) : defaultValue;
+        } catch (e) {
+          console.error('Storage error:', e);
+          return defaultValue;
+        }
+      },
+      clear: () => {
+        if (confirm('모든 데이터를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
+          localStorage.clear();
+          window.location.reload();
+        }
+      }
+    };
+
+    const exportData = (data) => {
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `proflow-backup-${new Date().toISOString().split('T')[0]}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    };
+
+    const importData = (file, callback) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const data = JSON.parse(e.target.result);
+          callback(data);
+        } catch (error) {
+          alert('파일을 읽을 수 없습니다. 올바른 JSON 파일인지 확인해주세요.');
+        }
+      };
+      reader.readAsText(file);
+    };
+
+    // Icon component
+    const Icon = ({ name, className = "", size = 24 }) => {
+      useEffect(() => {
+        if (window.lucide) {
+          window.lucide.createIcons();
+        }
+      }, []);
+      
+      return h('i', { 
+        'data-lucide': name, 
+        className,
+        style: { width: size, height: size }
+      });
+    };
+
+    // Notification Component
+    const Notification = ({ message, type = 'success', onClose }) => {
+      useEffect(() => {
+        const timer = setTimeout(() => {
+          onClose();
+        }, 3000);
+        return () => clearTimeout(timer);
+      }, [onClose]);
+
+      const bgColors = {
+        success: 'bg-green-500',
+        error: 'bg-red-500',
+        info: 'bg-blue-500',
+        warning: 'bg-amber-500'
+      };
+
+      return (
+        <div className={`notification ${bgColors[type]} text-white px-6 py-4 rounded-lg shadow-2xl flex items-center gap-3`}>
+          <Icon name={type === 'success' ? 'check-circle' : type === 'error' ? 'x-circle' : 'info'} size={20} />
+          <span>{message}</span>
+          <button onClick={onClose} className="ml-4 hover:bg-white/20 rounded p-1">
+            <Icon name="x" size={16} />
+          </button>
+        </div>
+      );
+    };
+
+    // Chart Component
+    const PerformanceChart = ({ data, type = 'radar' }) => {
+      const canvasRef = React.useRef(null);
+      const chartRef = React.useRef(null);
+
+      useEffect(() => {
+        if (!canvasRef.current) return;
+
+        const ctx = canvasRef.current.getContext('2d');
+        
+        if (chartRef.current) {
+          chartRef.current.destroy();
+        }
+
+        const chartData = {
+          labels: Object.keys(data).map(key => {
+            const labels = {
+              strategic: '전략적 사고',
+              execution: '실행력',
+              leadership: '리더십',
+              networking: '네트워킹',
+              personal: '자기계발',
+              wellness: '웰니스',
+              performance: '성과'
+            };
+            return labels[key] || key;
+          }),
+          datasets: [{
+            label: '현재 점수',
+            data: Object.values(data).map(d => d.score),
+            backgroundColor: 'rgba(79, 70, 229, 0.2)',
+            borderColor: 'rgb(79, 70, 229)',
+            borderWidth: 2,
+            pointBackgroundColor: 'rgb(79, 70, 229)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(79, 70, 229)'
+          }]
+        };
+
+        chartRef.current = new Chart(ctx, {
+          type: type,
+          data: chartData,
+          options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            scales: type === 'radar' ? {
+              r: {
+                beginAtZero: true,
+                max: 100,
+                ticks: {
+                  stepSize: 20
+                }
+              }
+            } : {
+              y: {
+                beginAtZero: true,
+                max: 100
+              }
+            },
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          }
+        });
+
+        return () => {
+          if (chartRef.current) {
+            chartRef.current.destroy();
+          }
+        };
+      }, [data, type]);
+
+      return (
+        <div className="bg-white rounded-2xl p-6">
+          <canvas ref={canvasRef}></canvas>
+        </div>
+      );
+    };
+
+    // Analytics Modal Component
+    const AnalyticsModal = ({ isOpen, onClose, tasks, sectionScores }) => {
+      if (!isOpen) return null;
+
+      const allTasks = Object.values(tasks).flat();
+      const completedTasks = allTasks.filter(t => t.completed);
+      const urgentTasks = allTasks.filter(t => t.priority === 'urgent');
+      const highTasks = allTasks.filter(t => t.priority === 'high');
+
+      const topSections = Object.entries(sectionScores)
+        .sort((a, b) => b[1].score - a[1].score)
+        .slice(0, 3);
+
+      const bottomSections = Object.entries(sectionScores)
+        .sort((a, b) => a[1].score - b[1].score)
+        .slice(0, 3);
+
+      return (
+        <div className="fixed inset-0 modal-backdrop flex items-center justify-center z-50 p-4" onClick={onClose}>
+          <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <div className="sticky top-0 bg-gradient-to-r from-indigo-900 to-indigo-700 text-white p-6 rounded-t-3xl flex justify-between items-center">
+              <h2 className="text-2xl font-light">📊 심층 분석 리포트</h2>
+              <button onClick={onClose} className="hover:bg-white/20 rounded-full p-2 transition-all">
+                <Icon name="x" size={24} />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-6">
+              {/* Task Statistics */}
+              <div className="grid md:grid-cols-4 gap-4">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-4">
+                  <div className="text-3xl font-light text-blue-700 mb-1">{allTasks.length}</div>
+                  <div className="text-sm text-blue-600">전체 과제</div>
+                </div>
+                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-4">
+                  <div className="text-3xl font-light text-green-700 mb-1">{completedTasks.length}</div>
+                  <div className="text-sm text-green-600">완료된 과제</div>
+                </div>
+                <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-4">
+                  <div className="text-3xl font-light text-red-700 mb-1">{urgentTasks.length}</div>
+                  <div className="text-sm text-red-600">긴급 과제</div>
+                </div>
+                <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-4">
+                  <div className="text-3xl font-light text-amber-700 mb-1">{highTasks.length}</div>
+                  <div className="text-sm text-amber-600">높은 우선순위</div>
+                </div>
+              </div>
+
+              {/* Performance Chart */}
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-indigo-900">성과 레이더 차트</h3>
+                <PerformanceChart data={sectionScores} type="radar" />
+              </div>
+
+              {/* Top & Bottom Performers */}
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="text-xl font-semibold mb-4 text-green-700">🏆 최고 성과 영역</h3>
+                  <div className="space-y-3">
+                    {topSections.map(([key, data], idx) => (
+                      <div key={key} className="bg-green-50 rounded-xl p-4">
+                        <div className="flex items-center gap-3">
+                          <div className="text-2xl font-bold text-green-700">#{idx + 1}</div>
+                          <div className="flex-1">
+                            <div className="font-semibold text-gray-800">{key}</div>
+                            <div className="text-sm text-gray-600">점수: {data.score}</div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold mb-4 text-amber-700">📈 개선 필요 영역</h3>
+                  <div className="space-y-3">
+                    {bottomSections.map(([key, data], idx) => (
+                      <div key={key} className="bg-amber-50 rounded-xl p-4">
+                        <div className="flex items-center gap-3">
+                          <div className="text-2xl font-bold text-amber-700">#{idx + 1}</div>
+                          <div className="flex-1">
+                            <div className="font-semibold text-gray-800">{key}</div>
+                            <div className="text-sm text-gray-600">점수: {data.score}</div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Recommendations */}
+              <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-6">
+                <h3 className="text-xl font-semibold mb-4 text-indigo-900">💡 AI 추천 사항</h3>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <Icon name="check" className="text-green-600 mt-1" size={16} />
+                    <span>긴급 과제 {urgentTasks.length}개를 우선적으로 처리하세요</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Icon name="check" className="text-green-600 mt-1" size={16} />
+                    <span>점수가 낮은 영역에 주간 2시간 이상 투자를 권장합니다</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Icon name="check" className="text-green-600 mt-1" size={16} />
+                    <span>현재 완료율 {Math.round((completedTasks.length / allTasks.length) * 100)}% - 목표 80% 달성을 위해 {Math.ceil(allTasks.length * 0.8 - completedTasks.length)}개 과제 추가 완료 필요</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    // Weekly Report Modal
+    const WeeklyReportModal = ({ isOpen, onClose, tasks, sectionScores, dailySchedule }) => {
+      if (!isOpen) return null;
+
+      const allTasks = Object.values(tasks).flat();
+      const completedThisWeek = allTasks.filter(t => t.completed).length;
+      const avgScore = Object.values(sectionScores).reduce((acc, s) => acc + s.score, 0) / Object.values(sectionScores).length;
+      const dailyCompletionRate = (dailySchedule.filter(t => t.completed).length / dailySchedule.length) * 100;
+
+      return (
+        <div className="fixed inset-0 modal-backdrop flex items-center justify-center z-50 p-4" onClick={onClose}>
+          <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <div className="sticky top-0 bg-gradient-to-r from-purple-900 to-purple-700 text-white p-6 rounded-t-3xl">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-light">📅 주간 성과 리포트</h2>
+                <button onClick={onClose} className="hover:bg-white/20 rounded-full p-2 transition-all">
+                  <Icon name="x" size={24} />
+                </button>
+              </div>
+              <div className="text-purple-200 text-sm">
+                {new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </div>
+            </div>
+
+            <div className="p-6 space-y-6">
+              {/* Summary Cards */}
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-2xl p-6">
+                  <Icon name="check-circle" className="text-indigo-600 mb-2" size={32} />
+                  <div className="text-3xl font-light text-indigo-700 mb-1">{completedThisWeek}</div>
+                  <div className="text-sm text-indigo-600">완료된 과제</div>
+                </div>
+                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6">
+                  <Icon name="trending-up" className="text-green-600 mb-2" size={32} />
+                  <div className="text-3xl font-light text-green-700 mb-1">{Math.round(avgScore)}</div>
+                  <div className="text-sm text-green-600">평균 점수</div>
+                </div>
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6">
+                  <Icon name="clock" className="text-purple-600 mb-2" size={32} />
+                  <div className="text-3xl font-light text-purple-700 mb-1">{Math.round(dailyCompletionRate)}%</div>
+                  <div className="text-sm text-purple-600">일일 루틴 달성률</div>
+                </div>
+              </div>
+
+              {/* Section Performance */}
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">영역별 성과</h3>
+                <div className="space-y-3">
+                  {Object.entries(sectionScores).map(([key, data]) => {
+                    const sectionTasks = tasks[key];
+                    const completed = sectionTasks.filter(t => t.completed).length;
+                    const total = sectionTasks.length;
+                    const completionRate = total > 0 ? (completed / total) * 100 : 0;
+
+                    return (
+                      <div key={key} className="bg-gray-50 rounded-xl p-4">
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="font-semibold text-gray-800">{key}</span>
+                          <span className="text-sm text-gray-600">{completed}/{total} 완료</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2 mb-1">
+                          <div 
+                            className={`bg-gradient-to-r ${data.color} h-2 rounded-full transition-all`}
+                            style={{ width: `${completionRate}%` }}
+                          />
+                        </div>
+                        <div className="flex justify-between text-xs text-gray-500">
+                          <span>완료율: {Math.round(completionRate)}%</span>
+                          <span>점수: {data.score}</span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Action Items */}
+              <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-6">
+                <h3 className="text-xl font-semibold mb-4 text-amber-900">🎯 다음 주 액션 아이템</h3>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <Icon name="target" className="text-amber-600 mt-1" size={16} />
+                    <span>미완료 긴급 과제 처리</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Icon name="target" className="text-amber-600 mt-1" size={16} />
+                    <span>점수 75점 이하 영역 집중 개선</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Icon name="target" className="text-amber-600 mt-1" size={16} />
+                    <span>일일 루틴 완료율 90% 목표</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Export Button */}
+              <button
+                onClick={() => {
+                  const report = {
+                    date: new Date().toISOString(),
+                    completedTasks: completedThisWeek,
+                    avgScore: Math.round(avgScore),
+                    dailyCompletionRate: Math.round(dailyCompletionRate),
+                    sectionScores
+                  };
+                  exportData(report);
+                }}
+                className="w-full bg-indigo-900 text-white py-3 rounded-xl hover:bg-indigo-800 transition-all flex items-center justify-center gap-2"
+              >
+                <Icon name="download" size={20} />
+                <span>리포트 내보내기</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    // Settings Modal
+    const SettingsModal = ({ isOpen, onClose, onExport, onImport, onClearData }) => {
+      if (!isOpen) return null;
+
+      const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          importData(file, onImport);
+          e.target.value = '';
+        }
+      };
+
+      return (
+        <div className="fixed inset-0 modal-backdrop flex items-center justify-center z-50 p-4" onClick={onClose}>
+          <div className="bg-white rounded-3xl max-w-2xl w-full shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <div className="bg-gradient-to-r from-gray-800 to-gray-700 text-white p-6 rounded-t-3xl flex justify-between items-center">
+              <h2 className="text-2xl font-light">⚙️ 설정</h2>
+              <button onClick={onClose} className="hover:bg-white/20 rounded-full p-2 transition-all">
+                <Icon name="x" size={24} />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-4">
+              {/* Data Management */}
+              <div>
+                <h3 className="text-lg font-semibold mb-3 text-gray-800">데이터 관리</h3>
+                <div className="space-y-3">
+                  <button
+                    onClick={onExport}
+                    className="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition-all flex items-center justify-center gap-2"
+                  >
+                    <Icon name="download" size={20} />
+                    <span>데이터 내보내기 (JSON)</span>
+                  </button>
+
+                  <label className="w-full bg-green-600 text-white py-3 rounded-xl hover:bg-green-700 transition-all flex items-center justify-center gap-2 cursor-pointer">
+                    <Icon name="upload" size={20} />
+                    <span>데이터 가져오기 (JSON)</span>
+                    <input type="file" accept=".json" onChange={handleFileChange} className="hidden" />
+                  </label>
+
+                  <button
+                    onClick={onClearData}
+                    className="w-full bg-red-600 text-white py-3 rounded-xl hover:bg-red-700 transition-all flex items-center justify-center gap-2"
+                  >
+                    <Icon name="trash-2" size={20} />
+                    <span>모든 데이터 삭제</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* App Info */}
+              <div className="bg-gray-50 rounded-xl p-4">
+                <h3 className="text-lg font-semibold mb-2 text-gray-800">앱 정보</h3>
+                <div className="text-sm text-gray-600 space-y-1">
+                  <p><strong>버전:</strong> 2.0.0 Enhanced</p>
+                  <p><strong>마지막 업데이트:</strong> 2026-01-30</p>
+                  <p><strong>저장 위치:</strong> 브라우저 로컬 스토리지</p>
+                </div>
+              </div>
+
+              {/* Features */}
+              <div className="bg-indigo-50 rounded-xl p-4">
+                <h3 className="text-lg font-semibold mb-2 text-indigo-900">새로운 기능</h3>
+                <ul className="text-sm text-gray-700 space-y-1">
+                  <li className="flex items-start gap-2">
+                    <Icon name="check" className="text-green-600 mt-0.5" size={16} />
+                    <span>자동 데이터 저장 및 복원</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Icon name="check" className="text-green-600 mt-0.5" size={16} />
+                    <span>심층 분석 및 차트 시각화</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Icon name="check" className="text-green-600 mt-0.5" size={16} />
+                    <span>주간 리포트 생성</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Icon name="check" className="text-green-600 mt-0.5" size={16} />
+                    <span>데이터 가져오기/내보내기</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Icon name="check" className="text-green-600 mt-0.5" size={16} />
+                    <span>향상된 PWA 지원</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    const ProFlowSystem = () => {
+      // Initialize state from localStorage or default values
+      const [dailySchedule, setDailySchedule] = useState(() => 
+        storage.load('dailySchedule', [
+          { id: 1, time: '06:00', task: '아침 운동 & 명상', completed: false },
+          { id: 2, time: '07:30', task: '전략 리뷰 & 우선순위 설정', completed: false },
+          { id: 3, time: '09:00', task: '경영진 회의 (Q1 실적 점검)', completed: false },
+          { id: 4, time: '11:00', task: '클라이언트 프레젠테이션 준비', completed: false },
+          { id: 5, time: '13:00', task: '네트워킹 런치 (VC 파트너)', completed: false },
+          { id: 6, time: '15:00', task: '팀 1:1 세션 (3명)', completed: false },
+          { id: 7, time: '17:00', task: '프로젝트 스프린트 리뷰', completed: false },
+          { id: 8, time: '19:00', task: 'Deep Work (전략 문서 작성)', completed: false },
+          { id: 9, time: '21:00', task: '학습 시간 (MBA 케이스 스터디)', completed: false },
+          { id: 10, time: '22:30', task: '내일 준비 & 저널링', completed: false }
+        ])
+      );
+
+      const [sectionScores, setSectionScores] = useState(() =>
+        storage.load('sectionScores', {
+          strategic: { score: 85, evaluation: '전략적 사고력이 탁월하며 장기 비전이 명확함. 시장 분석 깊이를 더욱 강화할 필요.', color: 'from-blue-500 to-blue-700' },
+          execution: { score: 92, evaluation: '실행력이 매우 우수하며 프로젝트 완수율이 높음. 지속적인 프로세스 최적화 진행 중.', color: 'from-green-500 to-green-700' },
+          leadership: { score: 78, evaluation: '리더십 역량 양호. 팀 피드백 빈도를 늘리고 코칭 스킬 개발 필요.', color: 'from-purple-500 to-purple-700' },
+          networking: { score: 88, evaluation: '네트워크 구축 능력 탁월. 업계 영향력을 체계적으로 확장 중. Thought Leadership 강화 중.', color: 'from-indigo-500 to-indigo-700' },
+          personal: { score: 75, evaluation: '자기계발에 대한 의지는 강하나 시간 배분 최적화 필요. 학습 루틴 재정비 권장.', color: 'from-amber-500 to-amber-700' },
+          wellness: { score: 82, evaluation: '워라밸 인식이 개선되고 있으나 스트레스 관리에 추가 노력 필요. 수면 패턴 개선 중.', color: 'from-pink-500 to-pink-700' },
+          performance: { score: 95, evaluation: '성과 지표 달성률이 매우 높음. 데이터 기반 의사결정이 탁월하며 ROI 측정 체계화됨.', color: 'from-red-500 to-red-700' }
+        })
+      );
+
+      const [tasks, setTasks] = useState(() =>
+        storage.load('tasks', {
+          strategic: [
+            { id: 1, text: 'Q1 비즈니스 전략 리뷰 및 KPI 재정립', priority: 'urgent', subject: '전략기획', deadline: '이번 주 금요일', completed: false },
+            { id: 2, text: '신규 파트너십 MOU 체결 준비 (3개사 동시 진행)', priority: 'high', subject: '사업개발', deadline: '2주 후', completed: false },
+            { id: 3, text: '시장 트렌드 분석 리포트 작성 (AI/Tech 섹터)', priority: 'high', subject: '리서치', deadline: '10일 후', completed: false },
+            { id: 4, text: '경쟁사 벤치마킹 세션 주최 (C-Level 참석)', priority: '', subject: '전략기획', deadline: '완료', completed: true },
+            { id: 5, text: '2026 로드맵 프레젠테이션 자료 제작', priority: 'urgent', subject: '기획', deadline: '3일 후', completed: false }
+          ],
+          execution: [
+            { id: 101, text: '프로젝트 Alpha 마일스톤 점검 회의 (PM/Dev 팀)', priority: 'urgent', subject: '프로젝트관리', deadline: '내일', completed: false },
+            { id: 102, text: '고객사 워크샵 준비 및 시나리오 설계', priority: 'high', subject: '클라이언트', deadline: '5일 후', completed: false },
+            { id: 103, text: 'Sprint Retrospective 및 팀 피드백 세션', priority: '', subject: '애자일', deadline: '완료', completed: true },
+            { id: 104, text: '주요 이해관계자 Stakeholder Meeting 준비', priority: 'high', subject: '커뮤니케이션', deadline: '1주일 후', completed: false },
+            { id: 105, text: '월간 실적 대시보드 업데이트 (Power BI)', priority: '', subject: '데이터분석', deadline: '이번 주', completed: false }
+          ],
+          leadership: [
+            { id: 201, text: '팀 1:1 미팅 스케줄 (6명 개별 세션)', priority: 'high', subject: '리더십', deadline: '이번 주 분산', completed: false },
+            { id: 202, text: '신입 온보딩 프로그램 개선안 작성', priority: '', subject: 'HR', deadline: '2주 후', completed: false },
+            { id: 203, text: '분기 타운홀 미팅 기획 및 발표 준비', priority: 'urgent', subject: '조직문화', deadline: '다음 주 수요일', completed: false },
+            { id: 204, text: '성과평가 피드백 세션 완료 (전체 팀원)', priority: '', subject: '성과관리', deadline: '완료', completed: true },
+            { id: 205, text: '리더십 코칭 프로그램 참여 (외부 코치)', priority: 'high', subject: '자기계발', deadline: '월 2회 진행', completed: false }
+          ],
+          networking: [
+            { id: 301, text: '업계 컨퍼런스 참석 및 네트워킹 (Tech Summit 2026)', priority: 'high', subject: '네트워킹', deadline: '다음 달', completed: false },
+            { id: 302, text: 'LinkedIn 프로필 업데이트 및 Thought Leadership 포스팅', priority: '', subject: '퍼스널브랜딩', deadline: '주 1회', completed: false },
+            { id: 303, text: '멘토링 커피챗 (3명의 주니어 프로페셔널)', priority: '', subject: '멘토링', deadline: '이번 달', completed: true },
+            { id: 304, text: '업계 전문가 인터뷰 세션 진행 (팟캐스트)', priority: 'high', subject: '콘텐츠', deadline: '2주 후', completed: false }
+          ],
+          personal: [
+            { id: 401, text: 'MBA 케이스 스터디 과제 제출', priority: 'urgent', subject: '학업', deadline: '이번 주 일요일', completed: false },
+            { id: 402, text: '업무 자동화 스크립트 학습 (Python/Automation)', priority: 'high', subject: '스킬업', deadline: '진행 중', completed: false },
+            { id: 403, text: '재무제표 분석 강의 수강 완료', priority: '', subject: '학습', deadline: '완료', completed: true },
+            { id: 404, text: '비즈니스 서적 독서 (주 1권 목표)', priority: '', subject: '독서', deadline: '매주 일요일', completed: false }
+          ],
+          wellness: [
+            { id: 501, text: '주 3회 피트니스 루틴 유지 (아침 6시)', priority: 'high', subject: '건강', deadline: '지속', completed: false },
+            { id: 502, text: '명상 및 마인드풀니스 실천 (매일 15분)', priority: '', subject: '멘탈케어', deadline: '완료', completed: true },
+            { id: 503, text: '가족과 주말 퀄리티 타임 (워라밸)', priority: 'high', subject: '라이프밸런스', deadline: '매주 토요일', completed: false },
+            { id: 504, text: '정기 건강검진 예약 및 수검', priority: 'urgent', subject: '건강', deadline: '이번 달 내', completed: false }
+          ],
+          performance: [
+            { id: 601, text: '프로젝트 ROI 32% 달성 (목표 25% 초과)', priority: 'high', subject: '성과', deadline: 'Q4 달성', completed: true },
+            { id: 602, text: '팀 생산성 지표 18% 향상 (OKR 달성률)', priority: 'high', subject: '성과', deadline: '달성', completed: true },
+            { id: 603, text: '신규 클라이언트 15개사 확보 목표', priority: 'urgent', subject: '목표', deadline: 'Q1 종료까지', completed: false },
+            { id: 604, text: '직원 만족도 NPS 85점 달성 (업계 평균 초과)', priority: '', subject: '성과', deadline: '달성', completed: true },
+            { id: 605, text: '프로세스 효율화로 운영비 12% 절감', priority: 'high', subject: '성과', deadline: '달성', completed: true },
+            { id: 606, text: '연간 매출 목표 120% 달성', priority: 'urgent', subject: '목표', deadline: '연말까지', completed: false }
+          ]
+        })
+      );
+
+      const [editingScore, setEditingScore] = useState(null);
+      const [editingEvaluation, setEditingEvaluation] = useState(null);
+      const [filter, setFilter] = useState('전체');
+      const [newTask, setNewTask] = useState({});
+      const [showAnalytics, setShowAnalytics] = useState(false);
+      const [showWeeklyReport, setShowWeeklyReport] = useState(false);
+      const [showSettings, setShowSettings] = useState(false);
+      const [notification, setNotification] = useState(null);
+
+      const sectionConfig = {
+        strategic: { 
+          title: '전략적 사고 (Strategic Thinking)', 
+          subtitle: '비전 수립 · 시장 분석 · 장기 로드맵',
+          subjects: ['전략기획', '사업개발', '리서치', '기획', '혁신'],
+          icon: 'target'
+        },
+        execution: { 
+          title: '실행력 (Execution Excellence)', 
+          subtitle: '프로젝트 관리 · 운영 효율 · 결과 달성',
+          subjects: ['프로젝트관리', '클라이언트', '애자일', '커뮤니케이션', '데이터분석'],
+          icon: 'briefcase'
+        },
+        leadership: { 
+          title: '리더십 (Leadership & People)', 
+          subtitle: '팀 관리 · 조직 문화 · 인재 육성',
+          subjects: ['리더십', 'HR', '조직문화', '성과관리', '자기계발'],
+          icon: 'users'
+        },
+        networking: { 
+          title: '네트워킹 (Network & Influence)', 
+          subtitle: '관계 구축 · 브랜딩 · 업계 영향력',
+          subjects: ['네트워킹', '퍼스널브랜딩', '멘토링', '콘텐츠', '커뮤니티'],
+          icon: 'trending-up'
+        },
+        personal: { 
+          title: '자기계발 (Personal Growth)', 
+          subtitle: '학습 · 스킬 향상 · 전문성 강화',
+          subjects: ['학업', '스킬업', '학습', '독서', '자격증'],
+          icon: 'award'
+        },
+        wellness: { 
+          title: '웰니스 (Work-Life Balance)', 
+          subtitle: '건강 관리 · 삶의 질 · 지속가능성',
+          subjects: ['건강', '멘탈케어', '라이프밸런스', '취미', '휴식'],
+          icon: 'heart'
+        },
+        performance: { 
+          title: '성과 트래킹 (Performance Metrics)', 
+          subtitle: 'KPI 달성 · ROI 측정 · 데이터 기반 성장',
+          subjects: ['성과', '목표', 'OKR', '지표', 'ROI'],
+          icon: 'trending-up'
+        }
+      };
+
+      // Auto-save to localStorage
+      useEffect(() => {
+        storage.save('dailySchedule', dailySchedule);
+      }, [dailySchedule]);
+
+      useEffect(() => {
+        storage.save('sectionScores', sectionScores);
+      }, [sectionScores]);
+
+      useEffect(() => {
+        storage.save('tasks', tasks);
+      }, [tasks]);
+
+      const showNotification = useCallback((message, type = 'success') => {
+        setNotification({ message, type });
+      }, []);
+
+      const updateSectionScore = (section, score) => {
+        setSectionScores(prev => ({
+          ...prev,
+          [section]: { ...prev[section], score: Math.min(100, Math.max(0, parseInt(score) || 0)) }
+        }));
+        showNotification('점수가 업데이트되었습니다');
+      };
+
+      const updateSectionEvaluation = (section, evaluation) => {
+        setSectionScores(prev => ({
+          ...prev,
+          [section]: { ...prev[section], evaluation }
+        }));
+        showNotification('평가가 업데이트되었습니다');
+      };
+
+      const calculateOverallScore = useCallback(() => {
+        const scores = Object.values(sectionScores).map(s => s.score);
+        const avg = scores.reduce((a, b) => a + b, 0) / scores.length;
+        return Math.round(avg);
+      }, [sectionScores]);
+
+      const getGrade = (score) => {
+        if (score >= 90) return { grade: 'A+', desc: 'Outstanding' };
+        if (score >= 85) return { grade: 'A', desc: 'Excellent' };
+        if (score >= 80) return { grade: 'B+', desc: 'Very Good' };
+        if (score >= 75) return { grade: 'B', desc: 'Good' };
+        return { grade: 'C+', desc: 'Satisfactory' };
+      };
+
+      const toggleDailyTask = (id) => {
+        setDailySchedule(prev => prev.map(task =>
+          task.id === id ? { ...task, completed: !task.completed } : task
+        ));
+        showNotification('일정이 업데이트되었습니다');
+      };
+
+      const updateDailyTask = (id, field, value) => {
+        setDailySchedule(prev => prev.map(task =>
+          task.id === id ? { ...task, [field]: value } : task
+        ));
+      };
+
+      const deleteDailyTask = (id) => {
+        if (window.confirm('이 일정을 삭제하시겠습니까?')) {
+          setDailySchedule(prev => prev.filter(task => task.id !== id));
+          showNotification('일정이 삭제되었습니다', 'info');
+        }
+      };
+
+      const addDailyTask = () => {
+        const newId = Date.now();
+        setDailySchedule(prev => [...prev, {
+          id: newId,
+          time: '00:00',
+          task: '새로운 일정',
+          completed: false
+        }].sort((a, b) => a.time.localeCompare(b.time)));
+        showNotification('일정이 추가되었습니다');
+      };
+
+      const calculateDaysInQuarter = () => {
+        const today = new Date();
+        const currentQuarter = Math.floor(today.getMonth() / 3);
+        const quarterEnd = new Date(today.getFullYear(), (currentQuarter + 1) * 3, 0);
+        const diffTime = quarterEnd - today;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        return diffDays;
+      };
+
+      const [daysLeft, setDaysLeft] = useState(calculateDaysInQuarter());
+
+      useEffect(() => {
+        const timer = setInterval(() => {
+          setDaysLeft(calculateDaysInQuarter());
+        }, 1000 * 60 * 60);
+        return () => clearInterval(timer);
+      }, []);
+
+      const toggleTask = (section, id) => {
+        setTasks(prev => ({
+          ...prev,
+          [section]: prev[section].map(task =>
+            task.id === id ? { ...task, completed: !task.completed } : task
+          )
+        }));
+        showNotification('과제가 업데이트되었습니다');
+      };
+
+      const deleteTask = (section, id) => {
+        if (window.confirm('이 항목을 삭제하시겠습니까?')) {
+          setTasks(prev => ({
+            ...prev,
+            [section]: prev[section].filter(task => task.id !== id)
+          }));
+          showNotification('과제가 삭제되었습니다', 'info');
+        }
+      };
+
+      const addTask = (section) => {
+        const taskData = newTask[section];
+        if (!taskData?.text?.trim()) {
+          showNotification('과제 내용을 입력해주세요', 'error');
+          return;
+        }
+
+        const newId = Date.now();
+        setTasks(prev => ({
+          ...prev,
+          [section]: [{
+            id: newId,
+            text: taskData.text,
+            priority: taskData.priority || '',
+            subject: taskData.subject || sectionConfig[section].subjects[0],
+            deadline: taskData.deadline || '기한 미정',
+            completed: false
+          }, ...prev[section]]
+        }));
+
+        setNewTask(prev => ({ ...prev, [section]: {} }));
+        showNotification('과제가 추가되었습니다');
+      };
+
+      const updateTaskField = (section, id, field, value) => {
+        setTasks(prev => ({
+          ...prev,
+          [section]: prev[section].map(task =>
+            task.id === id ? { ...task, [field]: value } : task
+          )
+        }));
+      };
+
+      const filterTasks = (taskList) => {
+        if (filter === '전체') return taskList;
+        if (filter === '긴급') return taskList.filter(t => t.priority === 'urgent');
+        if (filter === '높음') return taskList.filter(t => t.priority === 'high');
+        if (filter === '진행중') return taskList.filter(t => !t.completed);
+        return taskList;
+      };
+
+      const handleExportData = () => {
+        const allData = {
+          dailySchedule,
+          sectionScores,
+          tasks,
+          exportDate: new Date().toISOString()
+        };
+        exportData(allData);
+        showNotification('데이터가 내보내기되었습니다');
+      };
+
+      const handleImportData = (data) => {
+        if (data.dailySchedule) setDailySchedule(data.dailySchedule);
+        if (data.sectionScores) setSectionScores(data.sectionScores);
+        if (data.tasks) setTasks(data.tasks);
+        showNotification('데이터가 성공적으로 가져오기되었습니다');
+        setShowSettings(false);
+      };
+
+      const TaskCard = ({ task, section }) => {
+        const [isHovered, setIsHovered] = useState(false);
+        const [isEditing, setIsEditing] = useState(false);
+
+        return (
+          <div 
+            className={`bg-white/60 backdrop-blur-xl border border-white/50 rounded-2xl p-5 sm:p-7 transition-all duration-300 hover:bg-white/85 hover:shadow-lg hover:-translate-y-1 ${task.completed ? 'opacity-50' : ''}`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            <div className="flex gap-3 sm:gap-4 items-start">
+              <button
+                onClick={() => toggleTask(section, task.id)}
+                className="flex-shrink-0 w-6 h-6 rounded-lg border-2 border-gray-300 hover:border-indigo-900 transition-colors flex items-center justify-center mt-1"
+              >
+                <Icon name={task.completed ? "check-square" : "square"} className={task.completed ? "text-indigo-900" : "text-gray-400"} size={20} />
+              </button>
+
+              <div className="flex-1 min-w-0 pr-1">
+                {isEditing ? (
+                  <textarea
+                    value={task.text}
+                    onChange={(e) => updateTaskField(section, task.id, 'text', e.target.value)}
+                    onBlur={() => setIsEditing(false)}
+                    autoFocus
+                    className="w-full bg-indigo-50/50 border border-indigo-300 outline-none text-sm sm:text-base mb-3 rounded-lg px-3 py-2 transition-colors leading-relaxed resize-none"
+                    style={{ minHeight: '60px' }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' && e.ctrlKey) {
+                        setIsEditing(false);
+                      }
+                    }}
+                  />
+                ) : (
+                  <div
+                    onClick={() => setIsEditing(true)}
+                    className="w-full cursor-text hover:bg-indigo-50/30 text-sm sm:text-base mb-3 rounded px-2 py-1 transition-colors leading-relaxed min-h-[24px]"
+                    style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}
+                  >
+                    {task.text}
+                  </div>
+                )}
+
+                <div className="flex gap-2 flex-wrap items-center">
+                  {task.priority && (
+                    <select
+                      value={task.priority}
+                      onChange={(e) => updateTaskField(section, task.id, 'priority', e.target.value)}
+                      className={`px-2 sm:px-3 py-1 rounded-xl text-xs whitespace-nowrap border-none outline-none cursor-pointer ${
+                        task.priority === 'urgent' ? 'bg-red-100 text-red-700' :
+                        task.priority === 'high' ? 'bg-amber-100 text-amber-700' :
+                        'bg-indigo-100 text-indigo-700'
+                      }`}
+                    >
+                      <option value="urgent">긴급</option>
+                      <option value="high">높음</option>
+                      <option value="">일반</option>
+                    </select>
+                  )}
+                  {!task.priority && (
+                    <button
+                      onClick={() => updateTaskField(section, task.id, 'priority', 'high')}
+                      className="px-2 sm:px-3 py-1 bg-gray-100 text-gray-500 rounded-xl text-xs hover:bg-gray-200 transition-colors"
+                    >
+                      + 우선순위
+                    </button>
+                  )}
+                  <input
+                    type="text"
+                    value={task.subject}
+                    onChange={(e) => updateTaskField(section, task.id, 'subject', e.target.value)}
+                    className="px-2 sm:px-3 py-1 bg-indigo-100/80 text-indigo-700 rounded-xl text-xs border-none outline-none hover:bg-indigo-200/80 transition-colors min-w-0 flex-shrink-0"
+                    style={{ maxWidth: '100px' }}
+                  />
+                  <input
+                    type="text"
+                    value={task.deadline}
+                    onChange={(e) => updateTaskField(section, task.id, 'deadline', e.target.value)}
+                    className="px-2 sm:px-3 py-1 bg-indigo-100/80 text-indigo-700 rounded-xl text-xs border-none outline-none hover:bg-indigo-200/80 transition-colors min-w-0 flex-shrink-0"
+                    style={{ maxWidth: '100px' }}
+                  />
+                </div>
+              </div>
+
+              <div className={`flex gap-2 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+                <button
+                  onClick={() => setIsEditing(true)}
+                  className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-indigo-100 text-indigo-600 hover:bg-indigo-200 transition-all hover:scale-110"
+                  title="수정"
+                >
+                  <Icon name="edit-2" size={16} />
+                </button>
+                <button
+                  onClick={() => deleteTask(section, task.id)}
+                  className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-red-100 text-red-600 hover:bg-red-200 transition-all hover:scale-110"
+                  title="삭제"
+                >
+                  <Icon name="trash-2" size={16} />
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      };
+
+      const AddTaskForm = ({ section }) => (
+        <div className="bg-white/60 backdrop-blur-xl border-2 border-dashed border-gray-300 rounded-2xl p-8 mb-6 hover:border-indigo-900 hover:bg-white/85 transition-all">
+          <div className="flex flex-col gap-4">
+            <input
+              type="text"
+              placeholder="새로운 업무 추가"
+              value={newTask[section]?.text || ''}
+              onChange={(e) => setNewTask(prev => ({ ...prev, [section]: { ...prev[section], text: e.target.value } }))}
+              className="px-5 py-3 border border-gray-200 rounded-xl outline-none focus:border-indigo-900 focus:ring-2 focus:ring-indigo-100 transition-all"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  addTask(section);
+                }
+              }}
+            />
+
+            <div className="flex gap-3 flex-wrap">
+              <select
+                value={newTask[section]?.priority || ''}
+                onChange={(e) => setNewTask(prev => ({ ...prev, [section]: { ...prev[section], priority: e.target.value } }))}
+                className="flex-1 min-w-[120px] px-4 py-2 border border-gray-200 rounded-xl outline-none focus:border-indigo-900"
+              >
+                <option value="">일반</option>
+                <option value="urgent">긴급</option>
+                <option value="high">높음</option>
+              </select>
+
+              <select
+                value={newTask[section]?.subject || sectionConfig[section].subjects[0]}
+                onChange={(e) => setNewTask(prev => ({ ...prev, [section]: { ...prev[section], subject: e.target.value } }))}
+                className="flex-1 min-w-[120px] px-4 py-2 border border-gray-200 rounded-xl outline-none focus:border-indigo-900"
+              >
+                {sectionConfig[section].subjects.map(subj => (
+                  <option key={subj} value={subj}>{subj}</option>
+                ))}
+              </select>
+
+              <input
+                type="text"
+                placeholder="마감일"
+                value={newTask[section]?.deadline || ''}
+                onChange={(e) => setNewTask(prev => ({ ...prev, [section]: { ...prev[section], deadline: e.target.value } }))}
+                className="flex-1 min-w-[120px] px-4 py-2 border border-gray-200 rounded-xl outline-none focus:border-indigo-900"
+              />
+
+              <button
+                onClick={() => addTask(section)}
+                className="px-8 py-2 bg-indigo-900 text-white rounded-xl hover:bg-indigo-800 transition-all hover:-translate-y-0.5 font-semibold"
+              >
+                추가
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+
+      useEffect(() => {
+        if (window.lucide) {
+          window.lucide.createIcons();
+        }
+      });
+
+      return (
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50/30 to-slate-100 font-sans">
+          {/* Notification */}
+          {notification && (
+            <Notification
+              message={notification.message}
+              type={notification.type}
+              onClose={() => setNotification(null)}
+            />
+          )}
+
+          {/* Modals */}
+          <AnalyticsModal
+            isOpen={showAnalytics}
+            onClose={() => setShowAnalytics(false)}
+            tasks={tasks}
+            sectionScores={sectionScores}
+          />
+
+          <WeeklyReportModal
+            isOpen={showWeeklyReport}
+            onClose={() => setShowWeeklyReport(false)}
+            tasks={tasks}
+            sectionScores={sectionScores}
+            dailySchedule={dailySchedule}
+          />
+
+          <SettingsModal
+            isOpen={showSettings}
+            onClose={() => setShowSettings(false)}
+            onExport={handleExportData}
+            onImport={handleImportData}
+            onClearData={storage.clear}
+          />
+
+          {/* Navigation */}
+          <nav className="fixed top-0 left-0 right-0 bg-white/85 backdrop-blur-xl border-b border-gray-200/50 px-6 sm:px-12 py-6 z-50">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center gap-3">
+                <Icon name="briefcase" className="text-indigo-900" size={24} />
+                <h1 className="text-2xl font-light text-indigo-900">ProFlow</h1>
+                <span className="px-3 py-1 bg-indigo-100 text-indigo-900 rounded-full text-xs tracking-wider">ENHANCED</span>
+              </div>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setShowAnalytics(true)}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all flex items-center gap-2"
+                  title="심층 분석"
+                >
+                  <Icon name="bar-chart-2" size={18} />
+                  <span className="hidden sm:inline">분석</span>
+                </button>
+                <button
+                  onClick={() => setShowWeeklyReport(true)}
+                  className="px-4 py-2 bg-purple-600 text-white rounded-xl hover:bg-purple-700 transition-all flex items-center gap-2"
+                  title="주간 리포트"
+                >
+                  <Icon name="calendar" size={18} />
+                  <span className="hidden sm:inline">리포트</span>
+                </button>
+                <button
+                  onClick={() => setShowSettings(true)}
+                  className="px-4 py-2 bg-gray-600 text-white rounded-xl hover:bg-gray-700 transition-all flex items-center gap-2"
+                  title="설정"
+                >
+                  <Icon name="settings" size={18} />
+                  <span className="hidden sm:inline">설정</span>
+                </button>
+              </div>
+            </div>
+          </nav>
+
+          <div className="max-w-7xl mx-auto px-6 sm:px-12 pt-32 pb-20">
+            {/* Hero */}
+            <header className="text-center mb-12 fade-in">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light mb-6 bg-gradient-to-r from-indigo-900 to-indigo-700 bg-clip-text text-transparent leading-normal pb-2 px-2">
+                Performance<br />Through Systems
+              </h1>
+              <p className="text-lg sm:text-xl text-gray-600 mb-12 px-4">전문가를 위한 통합 생산성 플랫폼</p>
+
+              <div className="flex justify-center gap-12 flex-wrap">
+                <div>
+                  <div className="text-4xl font-light text-indigo-700 mb-1">Q1 2026</div>
+                  <div className="text-sm text-gray-500">현재 분기</div>
+                </div>
+                <div>
+                  <div className="text-4xl font-light text-indigo-700 mb-1">87%</div>
+                  <div className="text-sm text-gray-500">OKR 진행률</div>
+                </div>
+                <div>
+                  <div className="text-4xl font-light text-indigo-700 mb-1">{daysLeft}일</div>
+                  <div className="text-sm text-gray-500">분기 종료까지</div>
+                </div>
+              </div>
+            </header>
+
+            {/* Filter */}
+            <div className="flex gap-3 mb-10 p-2 bg-white/60 backdrop-blur-xl rounded-2xl">
+              {['전체', '긴급', '높음', '진행중'].map(f => (
+                <button
+                  key={f}
+                  onClick={() => setFilter(f)}
+                  className={`flex-1 py-4 rounded-xl font-medium transition-all ${
+                    filter === f
+                      ? 'bg-indigo-900 text-white shadow-lg'
+                      : 'text-gray-600 hover:bg-white/80'
+                  }`}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+
+            {/* Sections */}
+            {Object.entries(sectionConfig).map(([key, config]) => {
+              const scoreData = sectionScores[key];
+              const gradeInfo = getGrade(scoreData.score);
+              
+              return (
+                <section key={key} className="mb-12 fade-in">
+                  <div className="bg-white/60 backdrop-blur-xl rounded-2xl border-l-4 border-indigo-900 overflow-hidden">
+                    <div className="flex justify-between items-center p-6">
+                      <div className="flex items-center gap-4 flex-1">
+                        <Icon name={config.icon} className="text-indigo-900" size={32} />
+                        <div className="flex-1">
+                          <h2 className="text-3xl font-light text-indigo-900 mb-1">{config.title}</h2>
+                          <p className="text-sm text-gray-500">{config.subtitle}</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <span className="px-4 py-2 bg-indigo-100 text-indigo-900 rounded-full text-sm font-mono">
+                          {filterTasks(tasks[key]).length}개 항목
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Section Performance Card */}
+                    <div className={`mx-6 mb-4 p-6 bg-gradient-to-r ${scoreData.color} rounded-2xl text-white`}>
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-4 mb-2">
+                            {editingScore === key ? (
+                              <input
+                                type="number"
+                                min="0"
+                                max="100"
+                                value={scoreData.score}
+                                onChange={(e) => updateSectionScore(key, e.target.value)}
+                                onBlur={() => setEditingScore(null)}
+                                autoFocus
+                                className="text-5xl font-light w-32 bg-white/20 border-2 border-white/50 rounded-lg px-3 py-1 outline-none text-white"
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter') setEditingScore(null);
+                                }}
+                              />
+                            ) : (
+                              <div 
+                                onClick={() => setEditingScore(key)}
+                                className="text-5xl font-light cursor-pointer hover:bg-white/10 px-3 py-1 rounded-lg transition-all"
+                                title="클릭하여 점수 수정"
+                              >
+                                {scoreData.score}
+                              </div>
+                            )}
+                            <button
+                              onClick={() => setEditingScore(key)}
+                              className="w-8 h-8 flex items-center justify-center rounded-lg bg-white/20 hover:bg-white/30 transition-all"
+                              title="점수 수정"
+                            >
+                              <Icon name="edit-2" size={16} />
+                            </button>
+                          </div>
+                          <div className="text-xl font-semibold">{gradeInfo.grade} · {gradeInfo.desc}</div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-sm opacity-90 mb-1">영역 완료율</div>
+                          <div className="text-3xl font-light">
+                            {Math.round((tasks[key].filter(t => t.completed).length / tasks[key].length) * 100)}%
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-full bg-white/20 rounded-full h-3 mb-3">
+                        <div 
+                          className="bg-white h-3 rounded-full transition-all duration-500"
+                          style={{ width: `${scoreData.score}%` }}
+                        />
+                      </div>
+                      <div className="relative">
+                        <div className="flex items-start gap-2">
+                          <span className="text-sm opacity-95 mt-1">📊 <strong>평가:</strong></span>
+                          {editingEvaluation === key ? (
+                            <textarea
+                              value={scoreData.evaluation}
+                              onChange={(e) => updateSectionEvaluation(key, e.target.value)}
+                              onBlur={() => setEditingEvaluation(null)}
+                              autoFocus
+                              className="flex-1 text-sm leading-relaxed bg-white/20 border-2 border-white/50 rounded-lg px-3 py-2 outline-none text-white resize-none"
+                              style={{ minHeight: '80px' }}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' && e.ctrlKey) {
+                                  setEditingEvaluation(null);
+                                }
+                              }}
+                            />
+                          ) : (
+                            <p 
+                              onClick={() => setEditingEvaluation(key)}
+                              className="flex-1 text-sm leading-relaxed opacity-95 cursor-pointer hover:bg-white/10 px-3 py-2 rounded-lg transition-all"
+                              title="클릭하여 평가 수정 (Ctrl+Enter로 저장)"
+                            >
+                              {scoreData.evaluation}
+                            </p>
+                          )}
+                          <button
+                            onClick={() => setEditingEvaluation(key)}
+                            className="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-lg bg-white/20 hover:bg-white/30 transition-all"
+                            title="평가 수정"
+                          >
+                            <Icon name="edit-2" size={16} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-4">
+                    <AddTaskForm section={key} />
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+                      {filterTasks(tasks[key]).map(task => (
+                        <TaskCard key={task.id} task={task} section={key} />
+                      ))}
+                    </div>
+                  </div>
+                </section>
+              );
+            })}
+
+            {/* Daily Schedule */}
+            <div className="mb-12 bg-white/60 backdrop-blur-xl rounded-3xl p-8 shadow-lg border border-gray-200">
+              <div className="flex justify-between items-center mb-6 flex-wrap gap-4">
+                <div>
+                  <h2 className="text-3xl font-light text-indigo-900 mb-1">Today's Time-Blocked Schedule</h2>
+                  <p className="text-sm text-gray-500">Time-boxing으로 설계된 일일 루틴 (16시간 최적화)</p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="text-right">
+                    <div className="text-3xl font-light text-indigo-700">
+                      {dailySchedule.filter(t => t.completed).length}/{dailySchedule.length}
+                    </div>
+                    <div className="text-sm text-gray-500">
+                      완료율 {Math.round((dailySchedule.filter(t => t.completed).length / dailySchedule.length) * 100)}%
+                    </div>
+                  </div>
+                  <button
+                    onClick={addDailyTask}
+                    className="px-4 py-2 bg-indigo-900 text-white rounded-xl hover:bg-indigo-800 transition-all flex items-center gap-2"
+                  >
+                    <Icon name="plus" size={16} />
+                    <span className="text-sm font-semibold">일정 추가</span>
+                  </button>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-4">
+                {dailySchedule.map(task => {
+                  const DailyTaskItem = () => {
+                    const [isHovered, setIsHovered] = useState(false);
+                    const [isEditingTask, setIsEditingTask] = useState(false);
+
+                    return (
+                      <div 
+                        key={task.id}
+                        className={`flex items-center gap-4 p-4 rounded-xl transition-all hover:shadow-md ${
+                          task.completed 
+                            ? 'bg-green-50 border border-green-200' 
+                            : 'bg-white border border-gray-200'
+                        }`}
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
+                      >
+                        <button
+                          onClick={() => toggleDailyTask(task.id)}
+                          className="flex-shrink-0 w-6 h-6 rounded-lg border-2 border-gray-300 hover:border-indigo-900 transition-colors flex items-center justify-center"
+                        >
+                          <Icon 
+                            name={task.completed ? "check-square" : "square"} 
+                            className={task.completed ? "text-green-600" : "text-gray-400"} 
+                            size={20} 
+                          />
+                        </button>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-3 flex-wrap">
+                            <input
+                              type="time"
+                              value={task.time}
+                              onChange={(e) => updateDailyTask(task.id, 'time', e.target.value)}
+                              className="font-mono text-sm font-semibold text-indigo-900 bg-indigo-100 px-2 py-1 rounded border-none outline-none hover:bg-indigo-200 transition-colors"
+                            />
+                            {isEditingTask ? (
+                              <input
+                                type="text"
+                                value={task.task}
+                                onChange={(e) => updateDailyTask(task.id, 'task', e.target.value)}
+                                onBlur={() => setIsEditingTask(false)}
+                                autoFocus
+                                className="flex-1 text-sm bg-indigo-50 border border-indigo-300 rounded px-2 py-1 outline-none min-w-[150px]"
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter') setIsEditingTask(false);
+                                }}
+                              />
+                            ) : (
+                              <span 
+                                onClick={() => setIsEditingTask(true)}
+                                className={`flex-1 text-sm cursor-text hover:bg-indigo-50 px-2 py-1 rounded transition-colors ${
+                                  task.completed ? 'line-through text-gray-500' : 'text-gray-900'
+                                }`}
+                              >
+                                {task.task}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                        <div className={`flex gap-2 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+                          <button
+                            onClick={() => setIsEditingTask(true)}
+                            className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-indigo-100 text-indigo-600 hover:bg-indigo-200 transition-all hover:scale-110"
+                            title="수정"
+                          >
+                            <Icon name="edit-2" size={16} />
+                          </button>
+                          <button
+                            onClick={() => deleteDailyTask(task.id)}
+                            className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-red-100 text-red-600 hover:bg-red-200 transition-all hover:scale-110"
+                            title="삭제"
+                          >
+                            <Icon name="trash-2" size={16} />
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  };
+                  return <DailyTaskItem key={task.id} />;
+                })}
+              </div>
+
+              <div className="mt-6 p-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 text-sm text-gray-700">
+                  <div className="flex-1">
+                    <strong>Peak Performance Hours:</strong> 09:00-13:00 (High-stakes 업무)
+                  </div>
+                  <div className="flex-1">
+                    <strong>Deep Work Block:</strong> 19:00-21:00 (방해 없는 집중 시간)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Overall Performance */}
+            <div className="mb-12 bg-gradient-to-br from-indigo-900 to-indigo-700 rounded-3xl p-8 text-white shadow-2xl">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl font-light mb-2">종합 성과 평가</h2>
+                <p className="text-indigo-200 text-sm">7개 영역 통합 분석 리포트</p>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-8 mb-8">
+                <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6">
+                  <div className="text-7xl font-light mb-4">{calculateOverallScore()}</div>
+                  <div className="text-2xl font-semibold mb-2">{getGrade(calculateOverallScore()).grade}</div>
+                  <div className="text-indigo-200">{getGrade(calculateOverallScore()).desc} Performance</div>
+                  <div className="mt-4 text-sm text-indigo-100">
+                    상위 {100 - calculateOverallScore()}% 수준의 생산성 지표 달성
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  {Object.entries(sectionScores).map(([key, data]) => (
+                    <div key={key} className="flex items-center gap-3">
+                      <div className="flex-1">
+                        <div className="flex justify-between mb-1 text-sm">
+                          <span className="text-indigo-100">{sectionConfig[key].title.split('(')[0]}</span>
+                          <span className="font-semibold">{data.score}</span>
+                        </div>
+                        <div className="w-full bg-white/20 rounded-full h-2">
+                          <div 
+                            className={`bg-gradient-to-r ${data.color} h-2 rounded-full transition-all duration-500`}
+                            style={{ width: `${data.score}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6">
+                <h3 className="text-lg font-semibold mb-3">💡 Executive Summary</h3>
+                <p className="text-indigo-100 text-sm leading-relaxed">
+                  당신은 <strong>전략적 실행력</strong>과 <strong>성과 지향성</strong>이 탁월한 리더입니다. 
+                  특히 프로젝트 완수율(92점)과 KPI 달성률(95점)에서 최상위 수준을 기록하고 있습니다. 
+                  향후 개선 포인트는 <strong>리더십 코칭 스킬</strong>(78점)과 <strong>자기계발 시간 배분</strong>(75점) 영역입니다. 
+                  지속적인 워라밸 개선과 팀 피드백 빈도 증가를 권장합니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<ProFlowSystem />);
+  </script>
+
+  <!-- PWA Installation Script -->
+  <script>
+    let deferredPrompt;
+    const installPrompt = document.getElementById('installPrompt');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      
+      setTimeout(() => {
+        if (!localStorage.getItem('installDismissed')) {
+          installPrompt.style.display = 'flex';
+        }
+      }, 2000);
+    });
+
+    window.handleInstallClick = async () => {
+      if (!deferredPrompt) {
+        if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+          alert('iOS에서 홈 화면에 추가하려면:\n\n1. 공유 버튼(↑)을 탭하세요\n2. "홈 화면에 추가"를 선택하세요\n3. "추가"를 탭하세요');
+        } else {
+          alert('브라우저 메뉴에서 "홈 화면에 추가" 또는 "앱 설치"를 선택하세요.');
+        }
+        return;
+      }
+
+      installPrompt.style.display = 'none';
+      deferredPrompt.prompt();
+      
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log(`User response to install prompt: ${outcome}`);
+      deferredPrompt = null;
+    };
+
+    window.dismissInstall = () => {
+      installPrompt.style.display = 'none';
+      localStorage.setItem('installDismissed', 'true');
+    };
+
+    // PWA features note: Service Worker removed to avoid blob URL issues
+    // The app still works as a PWA with the manifest file
+    // Users can install it via browser's "Add to Home Screen" option
+  </script>
+</body>
+</html>
